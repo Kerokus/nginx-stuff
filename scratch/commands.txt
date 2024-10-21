@@ -1,0 +1,14 @@
+Step 1: Build the network:
+sudo docker network create app-network
+
+Step 2: Launch your APPLICATIONS first:
+Streamlit:
+sudo docker run -d --name justins_app --network app-network -p 8502:8502 justins_app:latest
+sudo docker run -d --name sarahs_app --network app-network -p 8501:8501 sarahs_app:latest
+sudo docker run -d --name marvins_app --network app-network -p 8503:8503 marvins_app:latest
+NextJS:
+sudo docker run -d --name ellis_app --network app-network -p 3000:3000 ellis_app:latest
+
+Step 3: Launch NGINX last:
+sudo docker run -d --name nginx --network app-network -p 443:443 nginx
+
